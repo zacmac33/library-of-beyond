@@ -13,7 +13,9 @@
 <h1>The Open Library</h1>
 <p>A public archive of human thought.</p>
 
-<input id="search" placeholder="Search the library..." />
+<form id="searchForm">
+  <input id="search" placeholder="Search the library..." />
+</form>
 
 <p>
   <a href="submit.html">Submit a Text</a>
@@ -51,5 +53,14 @@ document.getElementById("search").addEventListener("input", e => {
 });
 </script>
 
+<script>
+document.getElementById("searchForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const q = document.getElementById("search").value.toLowerCase();
+  const filtered = books.filter(b => b.title.toLowerCase().includes(q));
+  render(filtered);
+});
+</script>
+  
 </body>
 </html>
