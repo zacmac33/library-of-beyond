@@ -1,7 +1,10 @@
 [
   {
-    "title": "The Name of the Work",
+    "title": "Entry One",
     "file": "library/entry-001.html"
+  },
+  {
+    "title": "Tutorial",
+    "file": "library/entry-002.html"
   }
 ]
-
