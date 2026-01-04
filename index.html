@@ -45,13 +45,8 @@ function render(data) {
     list.appendChild(li);
   });
 }
-
-document.getElementById("search").addEventListener("input", e => {
-  const q = e.target.value.toLowerCase();
-  const filtered = books.filter(b => b.title.toLowerCase().includes(q));
-  render(filtered);
-});
 </script>
+
 
 <script>
 document.getElementById("searchForm").addEventListener("submit", e => {
