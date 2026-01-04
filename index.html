@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>The Library of Beyond</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Reset margin & height */
     html, body {
       margin: 0;
       padding: 0;
@@ -13,14 +13,14 @@
       color: #333;
     }
 
-    /* Center everything */
     body {
       display: flex;
-      justify-content: center; /* horizontal center */
-      align-items: center;     /* vertical center */
-      flex-direction: column;  /* stack elements vertically */
+      justify-content: center; 
+      align-items: flex-start;
+      flex-direction: column;  
       padding: 20px;
       box-sizing: border-box;
+      min-height: 100vh;
     }
 
     h1 {
@@ -30,7 +30,7 @@
     }
 
     p {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: center;
     }
 
@@ -38,11 +38,12 @@
       padding: 10px;
       width: 300px;
       max-width: 90%;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       border-radius: 5px;
       border: 1px solid #ccc;
       font-size: 1em;
       text-align: center;
+      box-sizing: border-box;
     }
 
     ul {
@@ -50,6 +51,7 @@
       padding: 0;
       width: 100%;
       max-width: 500px;
+      margin: 0 auto;
     }
 
     li {
@@ -74,6 +76,24 @@
 
     a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      ul {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -122,3 +142,4 @@ document.getElementById("search").addEventListener("input", e => {
 
 </body>
 </html>
+
