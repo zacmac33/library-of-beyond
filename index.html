@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Open Library</title>
+</head>
+<body>
+  <h1>The Open Library</h1>
+  <p>A public archive of human thought.</p>
+
+  <a href="submit.html">Submit a Text</a>
+
+  <ul id="list"></ul>
+
+  <script>
+    fetch("library/catalog.json")
+      .then(r => r.json())
+      .then(data => {
+        const list = document.getElementById("list");
+        data.forEach(book => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = book.file;
+          a.textContent = book.title;
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
 
