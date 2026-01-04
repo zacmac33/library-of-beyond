@@ -3,19 +3,86 @@
 <head>
   <title>The Library of Beyond</title>
   <style>
-    body { font-family: system-ui; padding: 30px; }
-    input { padding: 8px; width: 300px; }
-    li { margin: 8px 0; }
+    /* Reset margin & height */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: system-ui, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+    /* Center everything */
+    body {
+      display: flex;
+      justify-content: center; /* horizontal center */
+      align-items: center;     /* vertical center */
+      flex-direction: column;  /* stack elements vertically */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      width: 300px;
+      max-width: 90%;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    li {
+      background-color: #fff;
+      margin: 5px 0;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.1s;
+    }
+
+    li:hover {
+      transform: scale(1.02);
+    }
+
+    a {
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
 <h1>The Library of Beyond</h1>
-<p>A public library of human thoughts, ideas, and stories.</p>
+<p>A public archive of human thought.</p>
 
-<form id="searchForm">
-  <input id="search" placeholder="Search the library..." />
-</form>
+<input id="search" placeholder="Search the library..." />
 
 <p>
   <a href="submit.html">Submit a Text</a>
@@ -45,17 +112,13 @@ function render(data) {
     list.appendChild(li);
   });
 }
-</script>
 
-
-<script>
-document.getElementById("searchForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const q = document.getElementById("search").value.toLowerCase();
+document.getElementById("search").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
   const filtered = books.filter(b => b.title.toLowerCase().includes(q));
   render(filtered);
 });
 </script>
-  
+
 </body>
 </html>
