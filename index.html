@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The Library of Beyond</title>
+  <title>The Open Library</title>
+  <style>
+    body { font-family: system-ui; padding: 30px; }
+    input { padding: 8px; width: 300px; }
+    li { margin: 8px 0; }
+  </style>
 </head>
 <body>
-  <h1>The Library of Beyond</h1>
-  <p>A public archive of human thought.</p>
 
+<h1>The Open Library</h1>
+<p>A public archive of human thought.</p>
+
+<input id="search" placeholder="Search the library..." />
+
+<p>
   <a href="submit.html">Submit a Text</a>
+</p>
 
-  <ul id="list"></ul>
+<ul id="list"></ul>
 
-  <script>
-    fetch("library/catalog.json")
-      .then(r => r.json())
-      .then(data => {
-        const list = document.getElementById("list");
-        data.forEach(book => {
-          const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.href = book.file;
-          a.textContent = book.title;
-          li.appendChild(a);
-          list.appendChild(li);
-        });
-      });
-  </script>
+<script>
+let books = [];
+
+fetch("library/catalog.json")
+  .then(r => r.json())
+  .then(data => {
+    books = data;
+    render(data);
+  });
+
+function render(data) {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  data.forEach(book => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = book.file;
+    a.textContent = book.title;
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+}
+
+document.getElementById("search").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
+  const filtered = books.filter(b => b.title.toLowerCase().includes(q));
+  render(filtered);
+});
+</script>
+
 </body>
 </html>
-
